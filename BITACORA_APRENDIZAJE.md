@@ -6,7 +6,7 @@
 **Última actualización:** 2026-11-05 (Clase 2, paso 5.2)  
 **Modalidad:** 3–5 horas semanales; sesiones preferidas de 7:00 a 9:00 p. m. (Colombia)
 
-> **Uso:** Este documento es una guía de consulta y una bitácora. Actualizar después de cada clase. No agregar contraseñas, tokens, datos confidenciales ni información interna de la empresa.
+> **Uso:** Este documento es una guía de consulta y una bitácora. Actualizar al finalizar una clase solo cuando el alumno lo solicite: presentar primero los cambios y esperar su aprobación antes de guardarlos. Conservar la información anterior. No hacer commits ni publicaciones en GitHub sin autorización explícita. No agregar contraseñas, tokens, datos confidenciales ni información interna de la empresa.
 
 ## 1. Resumen del progreso
 
@@ -17,11 +17,13 @@
 | Clase 1 — pasos 4.7–4.10 | Repositorio Git, Homebrew, GitHub CLI, autenticación y primer `push` | Completado |
 | Clase 2 — paso 4.11 | `git status`, `git log`, `git remote -v` | Completado |
 | Clase 2 — pasos 5–5.2 | Funciones `def`, parámetros, `return`, refactorización y cinco pruebas de regresión | Completado |
-| Siguiente clase | Pruebas automatizadas con `unittest` y `if __name__ == '__main__'` | Pendiente |
+| Siguiente paso — Clase 2, paso 5.3 | Pruebas automatizadas con `unittest` y `if __name__ == '__main__'` | Pendiente |
 
 **Resultados recientes:** Cinco pruebas manuales aprobadas; segundo commit y `push` reportados exitosamente (2026-11-05).  
 **Primer commit conocido:** `f98e79a` — *Crear calculadora de combustible con validaciones*.  
-**Segundo commit:** creado y publicado; consultar su identificador con `git log --oneline -3`.
+**Segundo commit:** registrado anteriormente como creado y publicado; identificador pendiente de confirmar con `git log --oneline -3` cuando se autorice la consulta.
+
+**Alcance de la revisión del 2026-11-05:** se comprobó la refactorización leyendo el archivo. Los resultados de pruebas y los commits anteriores se conservan como antecedentes registrados; en esta conversación no se ejecutaron esas pruebas ni se verificaron el historial o GitHub.
 
 ## 2. Ruta habitual del proyecto en el Mac
 
@@ -38,6 +40,8 @@ ls -la
 
 ## 3. Chuleta de Git y GitHub
 
+**Git** controla versiones del proyecto mediante un historial de commits. **GitHub** aloja el repositorio remoto y permite compartirlo y colaborar. Un commit local no se publica hasta enviarlo con `push`.
+
 | Objetivo | Comando | Explicación |
 |---|---|---|
 | Ver estado | `git status` | Archivos modificados, pendientes o limpios |
@@ -50,7 +54,7 @@ ls -la
 | Publicar | `git push origin main` | Envía commits a GitHub |
 | Ver autenticación | `gh auth status` | Comprueba la sesión de GitHub CLI; no revela tokens |
 
-**Flujo habitual:**
+**Flujo habitual de referencia (no ejecutarlo automáticamente; commit y publicación requieren autorización explícita):**
 
 ```bash
 cd ~/Documents/python-ingenieria
@@ -78,6 +82,8 @@ git push origin main
 | Dos condiciones | `galones >= 0 and horas > 0` | Exige ambas condiciones |
 | Excepción | `try: ... except ValueError:` | Controla errores de conversión |
 | Función | `def calcular_consumo(galones, horas):` | Define cálculo reutilizable |
+| Parámetros | `galones` y `horas` en la definición | Nombres que reciben los valores para el cálculo |
+| Argumentos | `calcular_consumo(1250, 25)` | Valores que se proporcionan al llamar la función |
 | Retorno | `return galones / horas` | Entrega valor al llamador, no lo imprime |
 | Comentario | `# Una explicación` | Documenta; Python no lo ejecuta |
 
@@ -87,27 +93,30 @@ git push origin main
 
 ```python
 def calcular_consumo(galones, horas):
-    consumo = galones / horas
-    return consumo
+    return galones / horas
 
 print("=== CALCULADORA DE COMBUSTIBLE ===")
 
 try:
-    galones = float(input("Ingrese los galones: "))
-    horas = float(input("Ingrese las horas: "))
+    galones = float(input("Ingrese los galones de combustible: "))
+    horas = float(input("Ingrese las horas de operación: "))
 
     if galones >= 0 and horas > 0:
         consumo = calcular_consumo(galones, horas)
+        print("Galones suministrados:", galones)
+        print("Horas de operacion:", horas)
         print("Consumo promedio:", consumo, "gal/h")
     else:
-        print("Error: valores fuera de rango")
+        print("Los galones deben ser mayores o iguales a cero y las horas mayores que cero.")
 except ValueError:
-    print("Error: ingrese solamente numeros")
+    print("Entrada inválida. Ingrese números y use punto para los decimales.")
 ```
 
 **Atención:** referencia educativa; el archivo `calculadora_combustible.py` del proyecto es la versión fuente real. La razón `galones suministrados / horas` es un indicador simplificado, no necesariamente el consumo real. Para un tanque cerrado sin otras entradas/salidas: `consumo = inventario inicial + suministro − inventario final`.
 
 ## 5. Pruebas manuales realizadas
+
+Los estados siguientes proceden del registro anterior; no se repitieron durante esta revisión.
 
 | Galones | Horas | Resultado esperado | Última ejecución |
 |---:|---:|---|---|
@@ -116,6 +125,8 @@ except ValueError:
 | 1000 | 0 | Error controlado (horas inválidas) | Aprobada |
 | 1000 | -5 | Error controlado (horas inválidas) | Aprobada |
 | ABC | — | Error de conversión controlado | Aprobada |
+
+**Casos adicionales pendientes (aún no registrados como ejecutados):** galones negativos, cero galones con horas positivas y texto inválido en las horas.
 
 Ejecución:
 
@@ -131,8 +142,8 @@ python3 calculadora_combustible.py
 3. Leerla y explicar los cambios con tus palabras.
 4. Autorizar solo el cambio definido y revisar el diff.
 5. Ejecutar pruebas con datos válidos e inválidos.
-6. Crear commit y publicar tras verificar los resultados.
-7. Actualizar esta bitácora con conceptos, comandos, errores y próximos pasos.
+6. Crear commit y publicar solo con autorización explícita del alumno y tras verificar los resultados.
+7. Cuando el alumno solicite el cierre, proponer la actualización con fecha, número de clase, conceptos, comandos y su función, errores y soluciones, ejercicios, pruebas, pendientes y próximo paso. Guardarla solo después de su aprobación.
 
 **Prompt de consulta:**
 
@@ -157,7 +168,7 @@ python3 calculadora_combustible.py
 - Entender por qué los cinco escenarios manuales pueden convertirse en pruebas repetibles.
 - Separar la ejecución interactiva del código importable usando `if __name__ == "__main__":`.
 - Crear pruebas con `unittest` para la función de cálculo.
-- Revisar los cambios de Codex, ejecutar pruebas y crear un commit después de confirmar resultados.
+- Revisar los cambios de Codex y ejecutar pruebas; crear un commit o publicar únicamente con autorización explícita después de confirmar resultados.
 
 **Último punto completado:** Clase 2, paso 5.2.  
 **Siguiente paso:** Clase 2, paso 5.3 — introducción a pruebas automatizadas.
@@ -180,3 +191,32 @@ Copiar y completar al finalizar una sesión:
 - Dudas pendientes:
 - Próximo paso:
 ```
+
+
+## 10. Registro por clase
+
+Estos resúmenes recuperan la información existente sin inventar fechas ni resultados faltantes.
+
+### Clase 1 — fecha pendiente de confirmar
+
+- Objetivo: crear la calculadora de combustible y conocer el flujo de trabajo con Codex, Git y GitHub.
+- Conceptos aprendidos: variables, tipos `int` y `float`, operaciones, `print()`, `input()`, conversión con `float()`, condiciones `if/else` y manejo de `ValueError` con `try/except`.
+- Comandos de referencia: `cd` cambia de carpeta; `pwd` muestra la ubicación; `ls -la` lista archivos, incluidos los ocultos; `python3 calculadora_combustible.py` ejecuta el programa; `git add` prepara cambios; `git commit` registra una versión local; `git push` publica commits; `gh auth status` consulta la autenticación. La clase exacta de introducción de cada comando no consta en el registro anterior.
+- Ejercicio y archivo: creación de `calculadora_combustible.py` con entradas y validaciones.
+- Pruebas: el resumen anterior registra pruebas manuales; no detalla cuáles se ejecutaron específicamente en esta clase.
+- Errores y soluciones: no hay incidentes confirmados por clase. La nota sobre `fatal: not a git repository` es una guía preventiva, no evidencia de que haya ocurrido.
+- Git/GitHub: primer commit registrado como `f98e79a`; autenticación y primer `push` registrados como completados, sin nueva verificación en esta revisión.
+- Siguiente paso histórico: revisar el estado, historial y remoto; introducir funciones.
+
+### Clase 2 — 2026-11-05
+
+- Objetivo: revisar conceptos de Git y extraer el cálculo a una función.
+- Conceptos aprendidos: `def`, parámetros, argumentos, `return` y refactorización conservando el comportamiento. `return` devuelve un valor; `print()` lo muestra.
+- Comandos documentados en esta clase: `git status` consulta el estado; `git log --oneline -3` muestra los últimos tres commits; `git remote -v` muestra las direcciones de los remotos. No se ejecutaron durante esta revisión.
+- Ejercicio: definir `calcular_consumo(galones, horas)` antes del programa principal con `return galones / horas`, y sustituir la división por `consumo = calcular_consumo(galones, horas)`.
+- Archivo de código modificado: `calculadora_combustible.py`. Se conservaron `float(input())`, `if/else`, `try/except ValueError` y los mensajes existentes. La refactorización fue autorizada y comprobada por lectura en esta conversación.
+- Pruebas: cinco escenarios registrados como aprobados en la sección 5; no se repitieron en esta conversación.
+- Errores y soluciones: no se documentaron errores de ejecución nuevos durante la refactorización. La revisión de la bitácora aclaró parámetros y argumentos, alineó el ejemplo con el código y distinguió antecedentes de resultados verificados.
+- Git/GitHub: segundo commit y publicación registrados previamente; identificador pendiente de confirmar. No se hicieron commits ni publicaciones durante esta revisión.
+- Pendientes: confirmar datos históricos cuando corresponda, practicar los casos adicionales de la sección 5 y resolver las preguntas de la sección 7.
+- Próximo paso: continuar la Clase 2, paso 5.3, con pruebas automatizadas mediante `unittest` y separación del programa interactivo con `if __name__ == "__main__":`. Estos temas aún no se han implementado.
