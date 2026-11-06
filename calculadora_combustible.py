@@ -2,6 +2,10 @@
 # Mi primer programa en Python
 # Calculadora de consumo de combustible
 
+def calcular_consumo(galones, horas):
+    return galones / horas
+
+
 print("=== CALCULADORA DE COMBUSTIBLE ===")
 
 try:
@@ -11,7 +15,7 @@ try:
 
     if galones >= 0 and horas > 0:
         # Calculo del consumo promedio
-        consumo = galones / horas
+        consumo = calcular_consumo(galones, horas)
 
         # Mostrar resultados
         print("Galones suministrados:", galones)
