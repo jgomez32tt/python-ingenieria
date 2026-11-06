@@ -3,7 +3,7 @@
 **Alumno:** Ingeniero mecatrónico en transición hacia soluciones digitales e inteligencia artificial  
 **Proyecto:** `python-ingenieria`  
 **Repositorio:** https://github.com/jgomez32tt/python-ingenieria  
-**Última actualización:** 2026-11-05 (Clase 2, paso 5.2)  
+**Última actualización:** 2026-11-05 (Clase 2, paso 5.3 completado)  
 **Modalidad:** 3–5 horas semanales; sesiones preferidas de 7:00 a 9:00 p. m. (Colombia)
 
 > **Uso:** Este documento es una guía de consulta y una bitácora. Actualizar al finalizar una clase solo cuando el alumno lo solicite: presentar primero los cambios y esperar su aprobación antes de guardarlos. Conservar la información anterior. No hacer commits ni publicaciones en GitHub sin autorización explícita. No agregar contraseñas, tokens, datos confidenciales ni información interna de la empresa.
@@ -17,13 +17,14 @@
 | Clase 1 — pasos 4.7–4.10 | Repositorio Git, Homebrew, GitHub CLI, autenticación y primer `push` | Completado |
 | Clase 2 — paso 4.11 | `git status`, `git log`, `git remote -v` | Completado |
 | Clase 2 — pasos 5–5.2 | Funciones `def`, parámetros, `return`, refactorización y cinco pruebas de regresión | Completado |
-| Siguiente paso — Clase 2, paso 5.3 | Pruebas automatizadas con `unittest` y `if __name__ == '__main__'` | Pendiente |
+| Clase 2 — paso 5.3 | Pruebas automatizadas con `unittest` y `if __name__ == '__main__'` | Completado |
+| Próximos temas | Ampliar pruebas, pruebas unitarias e integración, `assertRaises()` y mejores prácticas | Pendiente |
 
 **Resultados recientes:** Cinco pruebas manuales aprobadas; segundo commit y `push` reportados exitosamente (2026-11-05).  
 **Primer commit conocido:** `f98e79a` — *Crear calculadora de combustible con validaciones*.  
 **Segundo commit:** registrado anteriormente como creado y publicado; identificador pendiente de confirmar con `git log --oneline -3` cuando se autorice la consulta.
 
-**Alcance de la revisión del 2026-11-05:** se comprobó la refactorización leyendo el archivo. Los resultados de pruebas y los commits anteriores se conservan como antecedentes registrados; en esta conversación no se ejecutaron esas pruebas ni se verificaron el historial o GitHub.
+**Alcance de la revisión inicial del 2026-11-05 (anterior al paso 5.3):** se comprobó la refactorización leyendo el archivo. Los resultados de pruebas y los commits anteriores se conservan como antecedentes registrados; durante aquella revisión no se ejecutaron esas pruebas ni se verificaron el historial o GitHub. Las comprobaciones posteriores del paso 5.3 se documentan al final.
 
 ## 2. Ruta habitual del proyecto en el Mac
 
@@ -89,7 +90,7 @@ git push origin main
 
 **Importante:** `if/else` son condicionales; `try/except` maneja excepciones. No son ciclos. `for` y `while` sí son ciclos.
 
-### Estructura de referencia de la calculadora
+### Estructura de referencia de la calculadora — versión anterior al paso 5.3
 
 ```python
 def calcular_consumo(galones, horas):
@@ -116,7 +117,7 @@ except ValueError:
 
 ## 5. Pruebas manuales realizadas
 
-Los estados siguientes proceden del registro anterior; no se repitieron durante esta revisión.
+Los estados siguientes proceden del registro anterior, confirmado por el alumno. No se repitieron los cinco escenarios durante la revisión inicial; las comprobaciones posteriores del paso 5.3 se detallan al final.
 
 | Galones | Horas | Resultado esperado | Última ejecución |
 |---:|---:|---|---|
@@ -161,7 +162,7 @@ python3 calculadora_combustible.py
 - ¿Por qué validamos antes de llamar a `calcular_consumo()`?
 - ¿Cómo se prueba un programa automáticamente sin ingresar datos cada vez?
 
-## 8. Próxima sesión (plan)
+## 8. Plan inicial de pruebas automatizadas — realizado en el paso 5.3
 
 **Tema:** Pruebas automatizadas con Python estándar, sin instalar librerías adicionales.
 
@@ -170,8 +171,8 @@ python3 calculadora_combustible.py
 - Crear pruebas con `unittest` para la función de cálculo.
 - Revisar los cambios de Codex y ejecutar pruebas; crear un commit o publicar únicamente con autorización explícita después de confirmar resultados.
 
-**Último punto completado:** Clase 2, paso 5.2.  
-**Siguiente paso:** Clase 2, paso 5.3 — introducción a pruebas automatizadas.
+**Último punto completado:** Clase 2, paso 5.3 — primera prueba automatizada aprobada.  
+**Próximos temas:** ampliar las pruebas, diferenciar pruebas unitarias e integración, aprender `assertRaises()` e incorporar mejores prácticas gradualmente.
 
 ---
 
@@ -208,15 +209,71 @@ Estos resúmenes recuperan la información existente sin inventar fechas ni resu
 - Git/GitHub: primer commit registrado como `f98e79a`; autenticación y primer `push` registrados como completados, sin nueva verificación en esta revisión.
 - Siguiente paso histórico: revisar el estado, historial y remoto; introducir funciones.
 
-### Clase 2 — 2026-11-05
+### Clase 2 — 2026-11-05 (registro inicial, hasta el paso 5.2)
 
 - Objetivo: revisar conceptos de Git y extraer el cálculo a una función.
 - Conceptos aprendidos: `def`, parámetros, argumentos, `return` y refactorización conservando el comportamiento. `return` devuelve un valor; `print()` lo muestra.
 - Comandos documentados en esta clase: `git status` consulta el estado; `git log --oneline -3` muestra los últimos tres commits; `git remote -v` muestra las direcciones de los remotos. No se ejecutaron durante esta revisión.
 - Ejercicio: definir `calcular_consumo(galones, horas)` antes del programa principal con `return galones / horas`, y sustituir la división por `consumo = calcular_consumo(galones, horas)`.
 - Archivo de código modificado: `calculadora_combustible.py`. Se conservaron `float(input())`, `if/else`, `try/except ValueError` y los mensajes existentes. La refactorización fue autorizada y comprobada por lectura en esta conversación.
-- Pruebas: cinco escenarios registrados como aprobados en la sección 5; no se repitieron en esta conversación.
+- Pruebas: cinco escenarios registrados como aprobados en la sección 5; no se repitieron durante la revisión inicial.
 - Errores y soluciones: no se documentaron errores de ejecución nuevos durante la refactorización. La revisión de la bitácora aclaró parámetros y argumentos, alineó el ejemplo con el código y distinguió antecedentes de resultados verificados.
 - Git/GitHub: segundo commit y publicación registrados previamente; identificador pendiente de confirmar. No se hicieron commits ni publicaciones durante esta revisión.
 - Pendientes: confirmar datos históricos cuando corresponda, practicar los casos adicionales de la sección 5 y resolver las preguntas de la sección 7.
-- Próximo paso: continuar la Clase 2, paso 5.3, con pruebas automatizadas mediante `unittest` y separación del programa interactivo con `if __name__ == "__main__":`. Estos temas aún no se han implementado.
+- Próximo paso: continuar la Clase 2, paso 5.3, con pruebas automatizadas mediante `unittest` y separación del programa interactivo con `if __name__ == "__main__":`. En el momento de ese registro aún no se habían implementado; su realización se documenta en la ampliación siguiente.
+
+
+### Ampliación de la Clase 2 — 2026-11-05
+
+**Conceptos aprendidos**
+
+- Git: `status`, `log --oneline -3`, `remote -v`, `add`, `commit` y `push`.
+- Funciones: definición con `def`, parámetros, argumentos, `return` y reutilización.
+- Refactorización: extraer un cálculo a una función sin cambiar el comportamiento esperado.
+- Pruebas automatizadas con `unittest`, incluido en Python.
+- Importación de funciones mediante `from ... import ...`.
+- `if __name__ == "__main__":`: permite ejecutar el programa directamente e importarlo sin solicitar datos.
+- `class`: agrupa las pruebas y permite heredar las herramientas de `unittest.TestCase`.
+- `self`: representa la instancia que ejecuta la prueba.
+- `assertEqual()`: comprueba que dos valores sean iguales.
+
+**Ejercicios completados y resultados**
+
+- Refactorización de `calculadora_combustible.py` utilizando `calcular_consumo(galones, horas)`.
+- Cinco pruebas manuales aprobadas, según el registro anterior y la confirmación del alumno.
+- Incorporación del bloque `if __name__ == "__main__":`, conservando las entradas, validaciones y mensajes.
+- Creación de `test_calculadora.py`.
+- Primera prueba automatizada aprobada: `calcular_consumo(2400, 32) == 75.0`. Resultado: **1 prueba ejecutada, `OK`**, con Python **3.9.6**.
+- Importación de la calculadora comprobada sin mensajes ni solicitud de datos.
+- Funcionamiento interactivo comprobado con `2400 / 32`, horas en cero y entrada no numérica. Estas tres comprobaciones complementan el registro previo de cinco pruebas.
+
+**Errores y soluciones**
+
+No se encontraron fallos en las comprobaciones realizadas. Para permitir la importación sin solicitar datos, se colocó el programa interactivo dentro de `if __name__ == "__main__":`.
+
+**Consulta rápida de comandos**
+
+| Comando | Función |
+|---|---|
+| `git status` | Consulta el estado de los archivos. |
+| `git log --oneline -3` | Muestra los últimos tres commits de forma resumida. |
+| `git remote -v` | Muestra los nombres y las direcciones de los repositorios remotos. |
+| `git add archivo.py` | Prepara los cambios de un archivo para el próximo commit. |
+| `git commit -m "Mensaje"` | Registra los cambios preparados en una versión local. |
+| `git push origin main` | Envía los commits de la rama `main` al remoto `origin`. |
+| `python3 calculadora_combustible.py` | Ejecuta la calculadora interactiva. |
+| `python3 -m unittest -v test_calculadora` | Ejecuta las pruebas del módulo con resultados detallados. |
+| `python3 -B -m unittest -v test_calculadora` | Ejecuta las mismas pruebas sin generar archivos de caché `.pyc`; fue el comando utilizado en esta sesión. |
+
+Los comandos de Git se incluyen como consulta. No se ejecutaron durante la implementación de las pruebas.
+
+**Próximos temas**
+
+- Ampliar las pruebas automatizadas.
+- Diferenciar pruebas unitarias de pruebas de integración.
+- Aprender `assertRaises()` para verificar excepciones.
+- Incorporar gradualmente mejores prácticas de programación.
+
+**Commits y publicaciones**
+
+No se realizaron nuevos commits ni publicaciones durante esta implementación.
