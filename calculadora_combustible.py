@@ -3,6 +3,10 @@
 # Calculadora de consumo de combustible
 
 def calcular_consumo(galones, horas):
+    if horas <= 0:
+        raise ValueError("Las horas deben ser mayores que cero.")
+    if galones < 0:
+        raise ValueError("Los galones no pueden ser negativos.")
     return galones / horas
 
 

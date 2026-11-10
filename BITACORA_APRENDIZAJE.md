@@ -3,7 +3,7 @@
 **Alumno:** Ingeniero mecatrónico en transición hacia soluciones digitales e inteligencia artificial  
 **Proyecto:** `python-ingenieria`  
 **Repositorio:** https://github.com/jgomez32tt/python-ingenieria  
-**Última actualización:** 2026-11-05 (Clase 2, paso 5.3 completado)  
+**Última actualización:** 2026-11-09 (registro de la Clase 3)  
 **Modalidad:** 3–5 horas semanales; sesiones preferidas de 7:00 a 9:00 p. m. (Colombia)
 
 > **Uso:** Este documento es una guía de consulta y una bitácora. Actualizar al finalizar una clase solo cuando el alumno lo solicite: presentar primero los cambios y esperar su aprobación antes de guardarlos. Conservar la información anterior. No hacer commits ni publicaciones en GitHub sin autorización explícita. No agregar contraseñas, tokens, datos confidenciales ni información interna de la empresa.
@@ -18,6 +18,7 @@
 | Clase 2 — paso 4.11 | `git status`, `git log`, `git remote -v` | Completado |
 | Clase 2 — pasos 5–5.2 | Funciones `def`, parámetros, `return`, refactorización y cinco pruebas de regresión | Completado |
 | Clase 2 — paso 5.3 | Pruebas automatizadas con `unittest` y `if __name__ == '__main__'` | Completado |
+| Clase 3 | Validaciones dentro de la función y pruebas de excepciones con `unittest` | Completado |
 | Próximos temas | Ampliar pruebas, pruebas unitarias e integración, `assertRaises()` y mejores prácticas | Pendiente |
 
 **Resultados recientes:** Cinco pruebas manuales aprobadas; segundo commit y `push` reportados exitosamente (2026-11-05).  
@@ -277,3 +278,45 @@ Los comandos de Git se incluyen como consulta. No se ejecutaron durante la imple
 **Commits y publicaciones**
 
 No se realizaron nuevos commits ni publicaciones durante esta implementación.
+
+### Clase 3 — Pruebas automatizadas y validaciones
+
+**Conceptos aprendidos**
+
+| Instrucción | Función |
+|---|---|
+| `raise ValueError("mensaje")` | Lanza una excepción de forma explícita e interrumpe la función cuando un valor es inválido. |
+| `except ValueError` | Captura una excepción de ese tipo producida en el bloque `try` y permite manejarla, por ejemplo, mostrando un mensaje. |
+| `with self.assertRaises(ValueError):` | Comprueba que el código dentro del bloque lance la excepción esperada. Si termina sin lanzarla, la prueba falla. |
+
+**Ejercicios completados y resultados**
+
+- En `calculadora_combustible.py`, `calcular_consumo()` valida sus parámetros antes de dividir. Lanza `ValueError` si `horas <= 0` o si `galones < 0`. Para datos válidos devuelve `galones / horas`.
+- En `test_calculadora.py`, la suite de `unittest` pasó de una a cuatro pruebas. Se conservó la comprobación de `2400 / 32 == 75.0` y se agregaron tres casos con `assertRaises(ValueError)` para horas en cero, horas negativas y galones negativos.
+- Las cuatro pruebas automatizadas finalizaron correctamente según el resultado reportado por el alumno.
+- Las evaluaciones conceptuales obtuvieron **100/100**.
+
+**Pruebas manuales**
+
+| Escenario | Resultado reportado |
+|---|---|
+| Operación normal | Con 1250 galones y 25 horas se confirmó un consumo de 50 gal/h. |
+| Horas en cero | El programa mostró el mensaje de valores fuera de rango. |
+| Horas negativas | El programa mostró el mensaje de valores fuera de rango. |
+| Galones negativos | El programa mostró el mensaje de valores fuera de rango. |
+| Entrada no numérica | El programa mostró el mensaje de entrada inválida al fallar la conversión con `float()`. |
+
+**Errores y soluciones**
+
+Se investigó un fallo inicialmente reportado con 1250 galones y 25 horas. Al repetir la prueba se confirmó que la calculadora devolvía el resultado esperado de **50 gal/h**.
+
+**Revisión de cambios y consulta rápida de comandos**
+
+Se revisaron las diferencias de los dos archivos de Python con `git diff`.
+
+| Comando | Función |
+|---|---|
+| `python3 -m unittest -v test_calculadora` | Ejecuta las cuatro pruebas y muestra el resultado de cada una. |
+| `python3 calculadora_combustible.py` | Ejecuta la calculadora interactiva para probarla manualmente. |
+| `git status` | Muestra el estado de los archivos del repositorio. |
+| `git diff -- calculadora_combustible.py test_calculadora.py` | Muestra los cambios sin preparar de esos dos archivos. |
